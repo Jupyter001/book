@@ -1,197 +1,24 @@
 # [Info]
 site_name: Jupyter's Book   # 左上角标题
-site_url: https://Jupyter001.github.io/mybook
+site_url: https://Jupyter001.github.io/book
 site_author: Jupyter
 site_description: Jupyter's Book
 
 # [Navigtion]
 nav:
-  - 讲稿:
-    - LECTURE/index.md 
-    - Linux:
-      - Linux讲座: LECTURE/Linux/linux.md
-      - 命令行入门精简版: LECTURE/Linux/commands-concise.md
-      - 学习记录: Jupyter/book/1.md
-    - Markdown:
-      - Markdown讲座: LECTURE/Markdown/markdown.md
-      - VSCode及插件安装: LECTURE/Markdown/vscode-extension.md
-    - Git:
-      - Git: LECTURE/Git/git.md
-      - Git例子: LECTURE/Git/git-demos.md
-      - Git合作: LECTURE/Git/git-teamwork.md
-      - Windows安装Git: LECTURE/Git/windows-install.md
-    - 应用开发设计: LECTURE/App/app-design.md
-    - 在macOS上用VSCode写C++代码:
-      - 0 介绍: LECTURE/vscode-cpp/0_about.md
-      - 1 前言和课程说明: LECTURE/vscode-cpp/1_前言和课程说明.md
-      - 2 认识macOS的文件系统: LECTURE/vscode-cpp/2_认识macOS的文件系统.md
-      - 3 认识程序: LECTURE/vscode-cpp/3_认识程序.md
-      - 4 认识终端和shell: LECTURE/vscode-cpp/4_认识终端和shell.md
-      - 5 开启VSCode的大门: LECTURE/vscode-cpp/5_开启VSCode的大门.md
-      - 6 VSCode代码运行自动化: LECTURE/vscode-cpp/6_VSCode代码运行自动化.md
-      - 7 用VSCode调试Cpp代码: LECTURE/vscode-cpp/7_用VSCode调试Cpp代码.md
-      - 8 课程回顾: LECTURE/vscode-cpp/8_课程回顾.md
-      - 其他: LECTURE/vscode-cpp/9_others.md
-      - 极速版: LECTURE/vscode-cpp/10_极速版.md
-      - 补充: LECTURE/vscode-cpp/11_补充.md
-    - 英语音标教学: LECTURE/English/phonetic-symbol.md
-    - 魔方:
-      - LECTURE/Cube/basic.md
-  - 博客:
-    - BLOG/index.md
-    - BLOG/others.md
-    ##- Apple:
-     ## - BLOG/Apple/mac-recommend.md
-      ##- BLOG/Apple/ipad-recommend.md
-    - macOS:
-      - BLOG/macOS/tree.md
-      - BLOG/macOS/zoom.md
-      - BLOG/macOS/sharing-mac-android.md
-      - BLOG/macOS/mad.md
-      - BLOG/macOS/stream.md
-      - BLOG/macOS/intel-windows.md
-    - Markdown:
-      - BLOG/Markdown/grammars.md
-      - BLOG/Markdown/mkdocs-site.md
-      - BLOG/Markdown/mdbook-site.md
-      - BLOG/Markdown/github-pages.md
-    - Linux:
-      - BLOG/Linux/vim.md
-      - BLOG/Linux/tmux.md
-      - BLOG/Linux/unix.md
-      - BLOG/Linux/kernel-compile.md
-      - BLOG/Linux/pi-start.md
-    - OS:
-      - BLOG/OS/fork-exec-spawn.md
-      - BLOG/OS/fork-example.md
-    - 计算机网络:
-      - BLOG/Network/learning.md
-      - BLOG/Network/nouns.md
-    - 数学:
-      - BLOG/Math/latex.md
-      - BLOG/Math/linear.md
-      - BLOG/Math/taylor.md
-      - BLOG/Math/max-pr.md
-      - BLOG/Math/sympy-det.md
-    - 物理:
-      - BLOG/Physics/guass-stokes.md
-      - BLOG/Physics/electromagnetics.md
-    - 电子工程:
-      - BLOG/ElectronicEngineering/verilog-simulation.md
-      - BLOG/ElectronicEngineering/storage.md
-      - BLOG/ElectronicEngineering/rlc.md
-      - BLOG/ElectronicEngineering/yosys-try.md
-    - FPGA:
-      - BLOG/Fpga/compare.md
-    - 日语:
-      - BLOG/Japanese/notes-2202-2203.md
-      - BLOG/Japanese/notes-2204.md
-      - BLOG/Japanese/notes-2205.md
-      - BLOG/Japanese/verb.md
-      - BLOG/Japanese/adj.md
-      - BLOG/Japanese/noun.md
-      - BLOG/Japanese/grammar.md
-      - BLOG/Japanese/essays.md
-      - BLOG/Japanese/tantanmen-translation.md
-      - BLOG/Japanese/chinese.md
-    - 游戏:
-      - BLOG/Game/what-is-game.md
-      - BLOG/Game/2d-vs-3d.md
-      - BLOG/Game/controller.md
-    - 其他:
-      - BLOG/Others/video-info.md
-      - BLOG/Others/sony-extend.md
-  - 开发:
-    - DEV/index.md
-    - DEV/interests.md
-    - React:
-      - DEV/React/h5.md
-      - DEV/React/notes.md
-      - DEV/React/vite.md
-    - Three:
-      - DEV/Three/setup.md
-    - WebGPU:
-      - DEV/Webgpu/notes.md
-      - DEV/Webgpu/first-triangle.md
-    - SwiftUI:
-      - DEV/SwiftUI/data-essentials.md
-    - Flutter:
-      - DEV/Flutter/commands.md
-      - DEV/Flutter/template.md
-      - DEV/Flutter/dart-lint.md
-      - DEV/Flutter/state-management.md
-      - DEV/Flutter/web-consideration.md
-    - 编程:
-      - DEV/Programming/recommendation.md
-      - DEV/Programming/my-feelings.md
-      - C:
-        - DEV/Programming/C/review.md
-        - DEV/Programming/C/final.md
-        - DEV/Programming/C/stdout-fflush.md
-        - DEV/Programming/C/watch-matrix.md
-      - Python:
-        - DEV/Programming/Python/copy.md
-        - DEV/Programming/Python/numpy-overview.md
-      - Swift:
-        - DEV/Programming/Swift/learning-resources.md
-        - DEV/Programming/Swift/notes-basic-grammars.md
-        - DEV/Programming/Swift/notes-language-guide.md
-        - DEV/Programming/Swift/notes-useful-foundation.md
-        - DEV/Programming/Swift/lecture-homework.md
-        - DEV/Programming/Swift/parallel-for.md
-      - Dart:
-        - DEV/Programming/Dart/learning.md
-      - Cpp:
-        - DEV/Programming/Cpp/1.md
-        - DEV/Programming/Cpp/2.md
-        - DEV/Programming/Cpp/3.md
-        - DEV/Programming/Cpp/4.md
-        - DEV/Programming/Cpp/5.md
-        - DEV/Programming/Cpp/6.md
-        - DEV/Programming/Cpp/7.md
-        - DEV/Programming/Cpp/8.md
-        - DEV/Programming/Cpp/google-format.md
-        - DEV/Programming/Cpp/class-properties.md
-        - DEV/Programming/Cpp/list.md
-        - DEV/Programming/Cpp/stack.md
-        - DEV/Programming/Cpp/final.md
-        - DEV/Programming/Cpp/oj.md
-  - 研究:
-    - RESEARCH/index.md
-    - CG:
-      - RESEARCH/CG/games101.md
-      - RESEARCH/CG/tiger-book.md
-      - RESEARCH/CG/blender-donut.md
-      - RESEARCH/CG/blender-manual.md
-      - RESEARCH/CG/games203.md
-      - RESEARCH/CG/games105.md
-      - RESEARCH/CG/format.md
-      - RESEARCH/CG/format-usdz.md
-    - GPU:
-      - RESEARCH/Gpu/gpu.md
-      - RESEARCH/Gpu/cuda.md
- 
-  - 转载:
-    - REPRODUCE/index.md
-    - 演讲:
-      - REPRODUCE/speech/tim-cook-at-duke.md
-    - 摘录:
-      - REPRODUCE/book/harford-occupation-choice.md
-      - REPRODUCE/book/the-long-view.md
-    - 文章:
-      - REPRODUCE/article/proses.md
-      - REPRODUCE/article/my-best-teacher.md
-    - 博客:
-      - REPRODUCE/blog/how-to-ask-questions-the-smart-way.md
-    - 歌词:
-      - REPRODUCE/lyrics/watagumo.md
-    - 诗:
-      - REPRODUCE/poem/poems.md
-  - 网站:
-    - WEBSITE/index.md # 访客打开网站第一个看到的是 docs/index.md（会报错 The following pages exist in the docs directory, but are not included in the "nav" configuration: index.md 不要紧）  如果访客之后想要重新看到这个界面  可以在 docs/WEBSITE/index.md 找到
-    - WEBSITE/build.md
-    - WEBSITE/help.md
-    - WEBSITE/test.md
+  - 学习记录: Jupyter/notes/1.md
+    
+  - 笔记:
+    
+    - 车身控制器:  Jupyter/notes/车身控制器.md
+    - 车载以太网: Jupyter/notes/车载以太网.md
+    - 汽车电子控制系统: Jupyter/notes/汽车电子控制系统.md
+    - 汽车电子通信协议: Jupyter/notes/汽车电子通信协议.md
+    - Autosar: Jupyter/notes/Autosar.md
+    
+  - 我:
+    - 基本信息: me/info.md 
+    - 经历:  me/info2.md
   
 
 # [UI]
