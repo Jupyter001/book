@@ -6,19 +6,24 @@ site_description: Jupyter's Book
 
 # [Navigtion]
 nav:
-  - 学习记录: Jupyter/notes/1.md
+  - 我:
+    - 个人信息: me/info.md
+    - 个人经历: me/info2.md
+    - 个人特点: me/description.md
+    - 物品:    me/necessities.md
+
+  - 学习记录: 
+    - 第一周: Jupyter/record/week1.md
+    - 第二周: Jupyter/record/week2.md
     
   - 笔记:
-    
     - 车身控制器:  Jupyter/notes/车身控制器.md
     - 车载以太网: Jupyter/notes/车载以太网.md
     - 汽车电子控制系统: Jupyter/notes/汽车电子控制系统.md
     - 汽车电子通信协议: Jupyter/notes/汽车电子通信协议.md
     - Autosar: Jupyter/notes/Autosar.md
-    
-  - 我:
-    - 基本信息: me/info.md 
-    - 经历:  me/info2.md
+  
+  
   
 
 # [UI]
