@@ -9,8 +9,8 @@ nav:
   - 我:
     - 个人信息: me/info.md
     - 个人经历: me/info2.md
-    - 个人特点: me/description.md
-    - 物品:    me/necessities.md
+    
+    
 
   - 学习记录: 
     - 第一周: Jupyter/record/week1.md
