@@ -16,13 +16,15 @@ nav:
     - 第一周: Jupyter/record/week1.md
     - 第二周: Jupyter/record/week2.md
     
+    
   - 笔记:
     - 车身控制器:  Jupyter/notes/车身控制器.md
     - 车载以太网: Jupyter/notes/车载以太网.md
     - 汽车电子控制系统: Jupyter/notes/汽车电子控制系统.md
     - 汽车电子通信协议: Jupyter/notes/汽车电子通信协议.md
     - Autosar: Jupyter/notes/Autosar.md
-  
+    - 《自动控制原理》笔记: Jupyter/record/week2-control.md
+    - Simulink笔记: Jupyter/record/week2-simulink.md
   
   
 
