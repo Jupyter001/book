@@ -1,10 +1,12 @@
-## 9月2日
+## 第三周学习记录
+**学习了StateFlow和汽车传动传动系统。**
 ## StateFlow
-Stateflow® 提供了一种图形语言，包括状态转移图、流程图、状态转移表和真值表。您可以使用 Stateflow 来说明 MATLAB® 算法和 Simulink® 模型如何响应输入信号、事件和基于时间的条件。
-
-Stateflow 使您能够设计和开发监控、任务调度、故障管理、通信协议、用户界面和混合系统。
-
-使用 Stateflow，您可以对组合和时序决策逻辑进行建模，使其可作为 Simulink 模型中的模块进行仿真，或作为 MATLAB 中的对象来执行。图形动画使您能够在执行逻辑时对其进行分析和调试。编辑时和运行时检查可确保在实现前具有设计一致性和完整性。
+`Stateflow`是集成于`Simulink`中的图形化设计于开发工具，主要针对于控制系统中的复杂控制逻辑进行建模与仿真，`StateFlow`适用于针对事件响应系统进行建模和仿真。与事件响应系统相对应的就是动态变换系统(`Dynamic Transformational
+System`)。动态变换系统通常可以利用数学表达式、方程等组成的输入/输出关系进行描述，
+像这样的系统利用`Simulink`进行建模是最为方便的。而事件响应系统通常利用一些自然语
+言或者逻辑表达式进行描述，这样的系统就需要利用`StateFlow`来进行建模。`StateFlow` 与`Simulink`结合起来，可以创建确定性监管控制系统。利用`Stateflow`可视化的模型和直观的
+仿真能力，可以清晰、简洁地反映出复杂动态逻辑关系。Stateflow 的基础是有限状态机理
+论，它通过对状态图、流程图的创建，对事件驱动系统进行建模和仿真。
 
 ### 构建StateFlow图
 - `sf` :可开启stateflow及stateflow library框
@@ -12,19 +14,22 @@ Stateflow 使您能够设计和开发监控、任务调度、故障管理、通�
 - `sfnew -c`:新建一个C语言的stateflow项目
 
 ### 动作状态
-- entry:语句/函数名: 进入状态的动作，简写为en
-- during:处于状态中。简写为du
-- exit:离开状态，简写为ex
+- `entry`:语句/函数名: 进入状态的动作，简写为`en`
+- `during`:处于状态中。简写为`du`
+- `exit`:离开状态，简写为`ex`
+
+区别：
+
  
-- on eventname:状态完整的接触到广播事件一次后执行的动作
-- on after(n,eventname):状态完整的接触到广播事件n次后执行的动作
-- on before(n,eventname):状态完整的接触到广播事件n次前执行的动作
-- on at(n,eventname):状态完整的接触到广播事件n次时执行的动作
+- `on eventname`:状态完整的接触到广播事件一次后执行的动作
+- `on after(n,eventname)`:状态完整的接触到广播事件n次后执行的动作
+- `on before(n,eventname)`:状态完整的接触到广播事件n次前执行的动作
+- `on at(n,eventname)`:状态完整的接触到广播事件n次时执行的动作
 ### StateFlow数据类型
-- Local Data：仅在图表中本地使用的数据。
-- Input：通过输入端口从 Simulink 接收信号。
-- Output：信号通过输出端口写入 Simulink。
-- Parameter：从 MATLAB 工作区或 Simulink 封装参数中读取一个常数值。
+- `Local Data`：仅在图表中本地使用的数据。
+- `Input`：通过输入端口从 Simulink 接收信号。
+- `Output`：信号通过输出端口写入 Simulink。
+- `Parameter`：从 MATLAB 工作区或 Simulink 封装参数中读取一个常数值。
 
       如果一个数据具有input或output，软件将自动在Stateflow模块上创建端口。
 ## 自动变速器
@@ -96,9 +101,10 @@ Stateflow 使您能够设计和开发监控、任务调度、故障管理、通�
 
 ## 汽车传动系统的功能：
 
-将发动机产生的驱动力矩和转速，以一定的关系和要求传到车轮。
+**将发动机产生的驱动力矩和转速，以一定的关系和要求传到车轮。**
 
-- 实现汽车减速增矩：主减速器
+
+- 实现汽车减速增矩：主减速器 
 - 实现汽车变速：变速器中多对齿轮
 - 实现汽车倒车：变速器中设置倒档
 - 必要时中断动力传递：离合器、变速器中的空档
