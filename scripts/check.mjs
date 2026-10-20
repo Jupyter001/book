@@ -11,17 +11,22 @@ for (const [, target] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includ
 for (const [, target] of html.matchAll(/(?:href|src)="(\.\/[^"#]+)"/g)) await access(path.join(root, 'dist', target));
 assert.ok(html.includes('lang="zh-CN"'));
 assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
-for (const section of ['about', 'journey', 'notes', 'contact']) assert.ok(ids.includes(section));
+for (const section of ['about', 'footprints', 'album', 'contact']) assert.ok(ids.includes(section));
 assert.ok(!/lorem ipsum|TODO|待填写|example\.com/i.test(html), 'Unfinished content');
 assert.ok(html.includes('mailto:oreo0815@foxmail.com'));
 assert.ok(html.includes('<link rel="canonical" href="https://jupyter001.github.io/book/">'));
 assert.ok(!html.includes('chatgpt.site'), 'Old hosting metadata');
-for (const [, file] of html.matchAll(/https:\/\/github\.com\/Jupyter001\/book\/blob\/main\/([^"#]+)/g)) {
-  await access(path.join(root, decodeURIComponent(file)));
-}
+assert.ok(!/车企|软件|控制器|AUTOSAR|计算机|工作经历/.test(html), 'Work-related content must not appear on the travel page');
+const data = JSON.parse(await readFile(path.join(root, 'content/travels.json'), 'utf8'));
+const supplied = ['北京','上海','天津','哈尔滨','漠河','吐鲁番','乌鲁木齐','武汉','宜昌','洛阳','长沙','广州','深圳','香港','澳门','大连','烟台','丽江','大理','昆明'];
+assert.deepEqual([...data.cities.map(city => city.name)].sort(), supplied.sort(), 'Visited city list differs from the supplied list');
+assert.equal([...html.matchAll(/class="city-card"/g)].length, data.cities.length);
+for (const city of data.cities) assert.ok(html.includes('<h3>' + city.name + '</h3>'), 'Missing city: ' + city.name);
+const embedded = JSON.parse(html.match(/<script id="travel-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+assert.deepEqual(embedded, data, 'Gallery data is stale');
 const sitemap = await readFile(path.join(root, 'dist/sitemap.xml'), 'utf8');
 assert.ok(sitemap.includes('<loc>https://jupyter001.github.io/book/</loc>'));
 const notFound = await readFile(path.join(root, 'dist/404.html'), 'utf8');
 assert.ok(notFound.includes('href="/book/"'));
 new Script(await readFile(path.join(root, 'dist/assets/main.js'), 'utf8'), { filename: 'main.js' });
-console.log('Passed: anchors, local assets, original notes, GitHub Pages metadata, 404 page, and JavaScript syntax.');
+console.log('Passed: 20 supplied cities, travel-only content, gallery data, anchors, assets, metadata, 404 page, and JavaScript syntax.');

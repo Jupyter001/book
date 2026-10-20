@@ -27,6 +27,8 @@ jobs:
         with:
           node-version: 24
           package-manager-cache: false
+      - name: Build travel journal
+        run: npm run build
       - name: Check pages and assets
         run: npm run check
       - name: Upload static website
