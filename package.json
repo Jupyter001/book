@@ -1,0 +1,12 @@
+{
+  "name": "xia-zijun-personal-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "夏子峻的极简个人主页",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

@@ -1,18 +1,53 @@
-name: publish site
-on: # 在什么时候触发工作流
-  push: # 在从本地main分支被push到GitHub仓库时
-    branches:
-      - main
-  pull_request: # 在main分支合并别人提的pr时
-    branches:
-      - main
-jobs: # 工作流的具体内容
-  deploy:
-    runs-on: ubuntu-latest # 创建一个新的云端虚拟机 使用最新Ubuntu系统
+name: Publish personal website
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 # 先checkout到main分支
-      - uses: actions/setup-python@v2 # 再安装Python3和相关环境
+      - name: Check out source
+        uses: actions/checkout@v7
         with:
-          python-version: 3.x
-      - run: pip install mkdocs-material # 使用pip包管理工具安装mkdocs-material
-      - run: mkdocs gh-deploy --force # 使用mkdocs-material部署gh-pages分支
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Check pages and assets
+        run: npm run check
+      - name: Upload static website
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy static website
+        id: deployment
+        uses: actions/deploy-pages@v4
