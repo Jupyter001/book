@@ -1,8 +1,8 @@
 {
-  "name": "xia-zijun-personal-site",
+  "name": "ai-drama-studio",
   "version": "1.0.0",
   "private": true,
-  "description": "夏子峻的旅行手记，记录去过的城市与环游世界的梦想",
+  "description": "Yiwei 的 AI 短剧项目资料库：照片素材与小说改编剧本",
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
