@@ -14,11 +14,16 @@ for (const [, target] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includ
 for (const [, target] of html.matchAll(/(?:href|src)="(\.\/[^"#]+)"/g)) await access(path.join(root, 'dist', target));
 assert.ok(html.includes('lang="zh-CN"'));
 assert.equal([...html.matchAll(/<h1\b/g)].length, 1, 'Exactly one h1 required');
-for (const section of ['photos', 'stories', 'workflow']) assert.ok(ids.includes(section), `Missing section: ${section}`);
+for (const section of ['week0', 'photos', 'stories', 'workflow']) assert.ok(ids.includes(section), `Missing section: ${section}`);
+assert.ok(html.includes('https://github.com/Jupyter001/book/blob/main/content/characters/README.md'), 'Week 0 character guide link missing');
 assert.ok(!/lorem ipsum|TODO|待填写|example\.com/i.test(html), 'Unfinished content');
 assert.ok(html.includes('<link rel="canonical" href="https://jupyter001.github.io/book/">'));
 assert.ok(!html.includes('chatgpt.site'), 'Old hosting metadata');
 assert.ok(!/旅行手记|环游世界|我的足迹/.test(html), 'Travel content must not appear on the drama library page');
+const characterTemplate = JSON.parse(await readFile(path.join(root, 'content/characters/template.json'), 'utf8'));
+assert.equal(characterTemplate.status, 'draft', 'Character template must start unapproved');
+assert.equal(characterTemplate.visualDesign.status, 'draft', 'Visual design must start unapproved');
+assert.equal(characterTemplate.sound.enabled, false, 'Sound design must remain optional');
 
 // 数据一致性
 const photoData = JSON.parse(await readFile(path.join(root, 'content/photos.json'), 'utf8'));

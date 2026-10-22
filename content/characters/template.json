@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "characterId": "character-id",
+  "displayName": "",
+  "version": 1,
+  "status": "draft",
+  "workIds": [],
+  "storyRole": {
+    "teamPosition": "",
+    "dramaticFunction": "",
+    "relationshipToMainPlot": ""
+  },
+  "core": {
+    "externalGoal": "",
+    "internalNeed": "",
+    "values": [],
+    "fearsOrConcerns": [],
+    "strengths": [],
+    "flaws": [],
+    "innerContradiction": "",
+    "pressureResponse": "",
+    "decisionHabits": "",
+    "observableBehaviors": [],
+    "growthArc": {
+      "startingPoint": "",
+      "turningPoints": [],
+      "possibleEndPoint": ""
+    }
+  },
+  "canonFacts": [],
+  "relationships": [],
+  "performance": {
+    "speechStyle": "",
+    "wordChoiceAndRhythm": "",
+    "emotionalExpression": "",
+    "physicalHabits": [],
+    "approvedSampleLines": []
+  },
+  "visualDesign": {
+    "status": "draft",
+    "identityAnchors": {
+      "ageAppearance": "",
+      "faceAndFeatures": "",
+      "hair": "",
+      "buildAndPosture": "",
+      "distinguishingFeatures": []
+    },
+    "signatureWardrobe": [],
+    "palette": [],
+    "accessories": [],
+    "invariants": [],
+    "variableElements": [],
+    "primaryImageAssetId": null,
+    "referenceAssetIds": [],
+    "generationPlan": {
+      "method": null,
+      "tool": null,
+      "model": null,
+      "prompt": {
+        "purpose": "",
+        "identityAnchors": "",
+        "wardrobeAndPalette": "",
+        "poseAndExpression": "",
+        "framingAndComposition": "",
+        "background": "",
+        "lightingAndStyle": "",
+        "continuityRequirements": "",
+        "positivePrompt": "",
+        "negativePrompt": ""
+      },
+      "outputRequirements": {
+        "imagePurpose": "character-key-visual",
+        "aspectRatio": "",
+        "minimumResolution": "",
+        "reviewChecklist": [
+          "角色身份特征与人物圣经一致",
+          "主角团之间容易辨识且整体风格统一",
+          "面部、发型、服装、配饰无意外漂移",
+          "无未经许可的真人仿制、无隐私信息、无错误文字或水印"
+        ]
+      }
+    },
+    "candidates": [],
+    "rightsReview": {
+      "toolTermsAllowProjectUse": false,
+      "referenceAssetsAuthorized": false,
+      "identifiablePersonLikenessUsed": false,
+      "notes": ""
+    },
+    "review": {
+      "reviewer": null,
+      "date": null,
+      "notes": ""
+    }
+  },
+  "sound": {
+    "enabled": false,
+    "timbreAndPitch": null,
+    "paceAndPauses": null,
+    "accentAndLanguage": null,
+    "emotionalRange": null,
+    "sampleLine": null,
+    "voiceActorAuthorization": null,
+    "voiceCloningAuthorization": null
+  },
+  "sources": [],
+  "approvals": {
+    "storyBible": {
+      "reviewer": null,
+      "date": null,
+      "notes": ""
+    }
+  },
+  "openQuestions": [],
+  "revisionHistory": []
+}

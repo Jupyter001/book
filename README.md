@@ -27,7 +27,9 @@ npm run check
 content/photos.json            图片库数据源：标题、描述、分类、标签、日期
 content/stories.json           剧情库索引：作品、状态、分集大纲
 content/stories/<作品id>.md    每部作品的小说原文 / 改编剧本全文
-content/characters/             主角团人物画像与可核实来源
+content/characters/README.md    Week 0 人物刻画、形象设计与定稿指南
+content/characters/template.json 人物圣经统一 JSON 模板
+content/characters/<id>.json    单个主角团成员的人物圣经
 content/milestones/             关键事件与剧情里程碑
 content/collaboration/          协作说明与 MiniMax Code 写稿提示
 scripts/video.mjs              通过本机 MCode 登录态提交 H3 视频生成
@@ -96,9 +98,9 @@ GitHub Pages 发布来源为 **GitHub Actions**。推送至 `main` 后，工作�
 
 ## 合作者素材与 MiniMax Code 写稿
 
-合作者通过 GitHub 分支和拉取请求补充资料：人物画像放在 `content/characters/`，关键事件放在 `content/milestones/`，公开授权的图片素材按上面的流程放入 `src/photos/` 并登记到 `content/photos.json`。可复制各目录中的 `_template.md` 开始填写；提交前请阅读 [`content/collaboration/README.md`](content/collaboration/README.md)。
+合作者通过 GitHub 分支和拉取请求补充资料：人物画像按 [`content/characters/README.md`](content/characters/README.md) 使用 `content/characters/template.json` 创建；关键事件模板位于 `content/milestones/_template.md`；公开授权的图片素材放入 `src/photos/` 并登记到 `content/photos.json`。提交前请阅读 [`content/collaboration/README.md`](content/collaboration/README.md)。
 
-**先建立并审核主角团人物圣经与人物形象图，再开始分集剧本。** 人物图由合作者使用文生图，或以获准的图库素材进行图生图/实图改造；审核通过后将主视觉、设计版本和参考图片 ID 登记回素材库，后续剧集沿用已批准的身份、造型与性格设定。声音设计为可选，不设声音约束时留空。
+**Week 0 的核心任务是先完成主角团人物刻画与形象设计，再开始分集剧本。** 首页设有 Week 0 入口，详细的角色要素、图像生成要求和 JSON 模板见 [`content/characters/README.md`](content/characters/README.md)。每位角色使用统一 JSON 人物圣经；人物图由合作者使用文生图，或以获准的图库素材进行图生图/实图改造。审核通过后将主视觉、设计版本和参考图片 ID 登记回素材库，后续剧集沿用已批准的身份、造型与性格设定。声音设计为可选，不设声音约束时留空。
 
 本仓库会公开在 GitHub 和 GitHub Pages 上。不要提交未经同意的群聊原图、完整聊天导出、个人隐私或账号信息；优先提交经参与者同意并脱敏的摘要、必要的短摘录和来源说明。原始私密材料应留在获授权的私有位置，PR 只包含创作所需的公开安全信息。
 
@@ -128,4 +130,4 @@ npm run video -- --prompt-file content/stories/你的作品.md --duration 6 --ra
 
 ## 资料来源
 
-所有照片与剧情均由项目作者本人提供，助手只负责整理、描述、改编与归档，不编造素材内容。
+照片、人物设定与剧情由项目作者及经授权的合作者提供；助手只负责整理、描述、改编与归档，不编造素材事实。

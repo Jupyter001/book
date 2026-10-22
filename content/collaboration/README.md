@@ -4,14 +4,14 @@
 
 ## 资料放置位置
 
-- `content/characters/<character-id>.md`：人物画像，使用 `content/characters/_template.md`。
+- `content/characters/<character-id>.json`：人物圣经，按 `content/characters/README.md` 说明填写，复制 `content/characters/template.json`。
 - `content/milestones/<date>-<event-id>.md`：事件与里程碑，使用 `content/milestones/_template.md`。
 - `content/photos.json` 与 `src/photos/`：已获公开使用许可的照片及描述。
 - `content/stories/<work-id>.md` 与 `content/stories.json`：原文、剧本和分集索引。
 
 ## 先定主角团，再写分集
 
-每位重要角色先复制 `content/characters/_template.md` 建立人物圣经，讨论并补齐剧情定位、人物核心、性格细节、关系、行为边界、语言表演和成长弧线。关键人物设定和后续剧集一致性规则经作者/项目负责人审核并标记“已批准”之前，先不要把分集剧本当成定稿。
+每位重要角色先复制 `content/characters/template.json` 建立人物圣经，按照 `content/characters/README.md` 补齐剧情定位、人物核心、性格细节、关系、行为边界、语言表演和成长弧线。关键人物设定和后续剧集一致性规则经作者/项目负责人审核并标记“已批准”之前，先不要把分集剧本当成定稿。
 
 ### 人物形象由合作者设计并入库
 
@@ -41,7 +41,7 @@ AI 概念图也须确认工具条款允许项目使用和公开。不得上传�
 ## GitHub PR 流程
 
 1. 从最新 `main` 创建分支，只提交获准公开的资料及其必要来源说明。
-2. 为人物或事件复制相应 `_template.md`，填写来源、授权、脱敏和待确认信息。
+2. 为人物复制 `content/characters/template.json`，为事件复制 `content/milestones/_template.md`，填写来源、授权、脱敏和待确认信息。
 3. 照片素材同时更新文件、`content/photos.json` 和描述/标签。
 4. 提交 PR；由作者审阅事实、授权和剧本影响后再合并。自动检查通过不代表内容授权或事实已获确认。
 
