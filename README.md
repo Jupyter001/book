@@ -1,4 +1,4 @@
-# AI 短剧工坊 · 项目资料库
+# 大象宇宙 · AI 短剧项目资料库
 
 网站地址：**https://jupyter001.github.io/book/**
 
