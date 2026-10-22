@@ -163,6 +163,18 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 .photos-section { background: var(--bg-soft); border-block: 1px solid var(--line-soft); }
 
+/* ---------- Week 0 人物定型 ---------- */
+.week0-section { background: linear-gradient(135deg, rgba(226, 166, 61, .07), transparent 52%), var(--bg); border-block: 1px solid var(--line); }
+.week0-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.week0-card { display: grid; align-content: start; gap: 12px; padding: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+.week0-step { color: var(--accent); font-family: var(--mono); font-size: 11px; letter-spacing: .16em; }
+.week0-card h3 { font-size: 21px; }
+.week0-card p { color: var(--muted); font-size: 14px; }
+.week0-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 24px; padding: 20px 24px; background: rgba(20, 17, 14, .72); border: 1px solid var(--line); border-radius: var(--radius); }
+.week0-footer p { max-width: 650px; color: var(--muted); font-size: 14px; }
+.week0-footer strong { color: var(--text); }
+.week0-footer .button { flex-shrink: 0; }
+
 /* ---------- 检索工具 ---------- */
 .library-tools {
   display: flex; justify-content: space-between; align-items: center; gap: 20px;
@@ -333,6 +345,8 @@ body.dialog-open { overflow: hidden; }
   .hero-stamp { right: 10px; }
   .photo-grid { grid-template-columns: repeat(2, 1fr); }
   .work-grid, .flow-grid { grid-template-columns: 1fr; }
+  .week0-grid { grid-template-columns: 1fr; }
+  .week0-footer { align-items: flex-start; flex-direction: column; }
   .empty-state { grid-template-columns: 1fr; padding: 36px; gap: 28px; }
   .empty-reel svg { max-width: 200px; }
   .section-heading { flex-direction: column; align-items: flex-start; gap: 12px; }
