@@ -1,4 +1,6 @@
 document.documentElement.classList.add('js');
+
+// ---------- 移动端导航 ----------
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#main-nav');
 function closeMenu() {
@@ -20,89 +22,97 @@ document.addEventListener('keydown', event => {
 window.matchMedia('(min-width: 601px)').addEventListener('change', closeMenu);
 document.querySelector('#year').textContent = new Date().getFullYear();
 
-const cityCards = [...document.querySelectorAll('.city-card')];
-const search = document.querySelector('#city-search');
-const filterButtons = [...document.querySelectorAll('.region-filter')];
-let activeRegion = '全部';
-function filterCities() {
-  const query = search.value.trim().toLocaleLowerCase();
-  let count = 0;
-  cityCards.forEach(card => {
-    const matches = (activeRegion === '全部' || card.dataset.region === activeRegion)
-      && card.dataset.search.toLocaleLowerCase().includes(query);
-    card.hidden = !matches;
-    if (matches) count++;
-  });
-  document.querySelector('#city-empty').hidden = count !== 0;
-  document.querySelector('#city-status').textContent = '显示 ' + count + ' / ' + cityCards.length + ' 座城市';
-}
-filterButtons.forEach(button => button.addEventListener('click', () => {
-  activeRegion = button.dataset.region;
-  filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-  filterCities();
-}));
-search.addEventListener('input', filterCities);
-document.querySelectorAll('[data-enhance]').forEach(element => { element.hidden = false; });
-
-const toast = document.querySelector('.toast');
-let toastTimer;
-function showToast(message) {
-  clearTimeout(toastTimer);
-  toast.textContent = message;
-  toast.classList.add('visible');
-  toastTimer = setTimeout(() => toast.classList.remove('visible'), 3500);
-}
-document.querySelector('.copy-email').addEventListener('click', async event => {
-  const email = event.currentTarget.dataset.email;
-  try {
-    if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
-    await navigator.clipboard.writeText(email);
-    showToast('邮箱已复制，期待你的来信。');
-  } catch {
-    const range = document.createRange();
-    range.selectNodeContents(document.querySelector('.email-address'));
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    showToast('请手动复制邮箱：' + email);
+// ---------- 通用筛选 ----------
+function setupFilter({ cards, chips, searchInput, emptyNote, statusNote, dataKey, allLabel, noun }) {
+  if (!cards.length) return;
+  let active = allLabel;
+  function apply() {
+    const query = searchInput.value.trim().toLocaleLowerCase();
+    let count = 0;
+    cards.forEach(card => {
+      const matches = (active === allLabel || card.dataset[dataKey] === active)
+        && card.dataset.search.toLocaleLowerCase().includes(query);
+      card.hidden = !matches;
+      if (matches) count++;
+    });
+    emptyNote.hidden = count !== 0;
+    statusNote.textContent = '显示 ' + count + ' / ' + cards.length + ' ' + noun;
   }
-});
-
-const travelData = JSON.parse(document.querySelector('#travel-data').textContent);
-const photos = travelData.cities.flatMap(city => city.photos.map(photo => ({ ...photo, city: city.name })));
-const dialog = document.querySelector('.photo-dialog');
-let photoIndex = 0;
-let photoOpener;
-function showPhoto(index) {
-  photoIndex = index;
-  const photo = photos[index];
-  document.querySelector('#photo-title').textContent = photo.city;
-  const image = document.querySelector('.dialog-image');
-  image.src = photo.src;
-  image.alt = photo.alt;
-  document.querySelector('.photo-caption').textContent = photo.caption || '';
-  document.querySelector('.photo-position').textContent = (index + 1) + ' / ' + photos.length;
-  document.querySelector('[data-photo-step="-1"]').disabled = index === 0;
-  document.querySelector('[data-photo-step="1"]').disabled = index === photos.length - 1;
+  chips.forEach(chip => chip.addEventListener('click', () => {
+    active = chip.dataset[dataKey];
+    chips.forEach(item => item.setAttribute('aria-pressed', String(item === chip)));
+    apply();
+  }));
+  searchInput.addEventListener('input', apply);
+  const tools = searchInput.closest('[data-enhance]');
+  if (tools) tools.hidden = false;
 }
-document.querySelectorAll('[data-photo-index]').forEach(button => button.addEventListener('click', () => {
-  photoOpener = button;
-  showPhoto(Number(button.dataset.photoIndex));
-  dialog.showModal();
-  document.body.classList.add('dialog-open');
-}));
-document.querySelectorAll('[data-photo-step]').forEach(button => button.addEventListener('click', () => {
-  const next = photoIndex + Number(button.dataset.photoStep);
-  if (next >= 0 && next < photos.length) showPhoto(next);
-}));
-document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
-dialog.addEventListener('close', () => { document.body.classList.remove('dialog-open'); photoOpener?.focus(); });
-dialog.addEventListener('keydown', event => {
-  if (event.key === 'ArrowRight' && photoIndex < photos.length - 1) { event.preventDefault(); showPhoto(photoIndex + 1); }
-  if (event.key === 'ArrowLeft' && photoIndex > 0) { event.preventDefault(); showPhoto(photoIndex - 1); }
+
+setupFilter({
+  cards: [...document.querySelectorAll('.photo-card')],
+  chips: [...document.querySelectorAll('[data-category]')],
+  searchInput: document.querySelector('#photo-search'),
+  emptyNote: document.querySelector('#photo-empty'),
+  statusNote: document.querySelector('#photo-status'),
+  dataKey: 'category',
+  allLabel: '全部',
+  noun: '张照片'
 });
 
+setupFilter({
+  cards: [...document.querySelectorAll('.work-card')],
+  chips: [...document.querySelectorAll('[data-status]')],
+  searchInput: document.querySelector('#story-search'),
+  emptyNote: document.querySelector('#story-empty'),
+  statusNote: document.querySelector('#story-status'),
+  dataKey: 'status',
+  allLabel: '全部',
+  noun: '部作品'
+});
+
+// ---------- 照片查看器 ----------
+const libraryData = JSON.parse(document.querySelector('#library-data').textContent);
+const photos = libraryData.photos || [];
+const dialog = document.querySelector('.photo-dialog');
+if (photos.length) {
+  let photoIndex = 0;
+  let photoOpener;
+  function showPhoto(index) {
+    photoIndex = index;
+    const photo = photos[index];
+    document.querySelector('#photo-title').textContent = photo.title;
+    const image = dialog.querySelector('.dialog-image');
+    image.src = photo.src;
+    image.alt = photo.description;
+    dialog.querySelector('.photo-caption').textContent = photo.description;
+    dialog.querySelector('.dialog-tags').innerHTML = (photo.tags || []).map(() => '<span class="tag"></span>').join('');
+    dialog.querySelectorAll('.dialog-tags .tag').forEach((tagEl, i) => { tagEl.textContent = photo.tags[i]; });
+    dialog.querySelector('.photo-position').textContent = (index + 1) + ' / ' + photos.length;
+    dialog.querySelector('[data-photo-step="-1"]').disabled = index === 0;
+    dialog.querySelector('[data-photo-step="1"]').disabled = index === photos.length - 1;
+  }
+  document.querySelectorAll('[data-photo-index]').forEach(button => button.addEventListener('click', () => {
+    photoOpener = button;
+    showPhoto(Number(button.dataset.photoIndex));
+    dialog.showModal();
+    document.body.classList.add('dialog-open');
+  }));
+  dialog.querySelectorAll('[data-photo-step]').forEach(button => button.addEventListener('click', () => {
+    const next = photoIndex + Number(button.dataset.photoStep);
+    if (next >= 0 && next < photos.length) showPhoto(next);
+  }));
+  dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  dialog.addEventListener('close', () => { document.body.classList.remove('dialog-open'); photoOpener?.focus(); });
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'ArrowRight' && photoIndex < photos.length - 1) { event.preventDefault(); showPhoto(photoIndex + 1); }
+    if (event.key === 'ArrowLeft' && photoIndex > 0) { event.preventDefault(); showPhoto(photoIndex - 1); }
+  });
+} else {
+  dialog.remove();
+}
+
+// ---------- 导航高亮 ----------
 if ('IntersectionObserver' in window) {
   const links = [...navigation.querySelectorAll('a[href^="#"]')];
   const observer = new IntersectionObserver(entries => {
