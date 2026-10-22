@@ -5,3 +5,4 @@ Thumbs.db
 .openai/
 .env
 .env.*
+generated/videos/

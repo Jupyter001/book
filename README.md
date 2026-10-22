@@ -30,6 +30,7 @@ content/stories/<作品id>.md    每部作品的小说原文 / 改编剧本全�
 content/characters/             主角团人物画像与可核实来源
 content/milestones/             关键事件与剧情里程碑
 content/collaboration/          协作说明与 MiniMax Code 写稿提示
+scripts/video.mjs              通过本机 MCode 登录态提交 H3 视频生成
 src/index.html                 页面模板
 src/assets/styles.css          暗夜片场主题样式
 src/assets/main.js             分类筛选、关键词搜索、照片查看器、手机导航
@@ -99,7 +100,29 @@ GitHub Pages 发布来源为 **GitHub Actions**。推送至 `main` 后，工作�
 
 本仓库会公开在 GitHub 和 GitHub Pages 上。不要提交未经同意的群聊原图、完整聊天导出、个人隐私或账号信息；优先提交经参与者同意并脱敏的摘要、必要的短摘录和来源说明。原始私密材料应留在获授权的私有位置，PR 只包含创作所需的公开安全信息。
 
-使用 MiniMax Code Desktop 时，在仓库目录打开项目，选择 **M3.1-Flash**，再使用 [`content/collaboration/mcode-script-prompt.md`](content/collaboration/mcode-script-prompt.md) 中的提示词。模型只负责起草；人物事实、事件来源和剧本改动由协作者审阅后通过 PR 合并。视频生成尚未纳入仓库工作流。
+使用 MiniMax Code Desktop 时，在仓库目录打开项目，选择 **M3.1-Flash**，再使用 [`content/collaboration/mcode-script-prompt.md`](content/collaboration/mcode-script-prompt.md) 中的提示词。模型只负责起草；人物事实、事件来源和剧本改动由协作者审阅后通过 PR 合并。
+
+## 本地 MiniMax H3 视频生成
+
+视频可以直接通过已登录的 **MCode** 连接器调用 MiniMax-H3，不需要 MiniMax Design Desktop 或额外 API Key。需要本机安装并登录 MCode，且 `mcode-tools-cn.cmd` 位于默认位置；其他安装位置可通过 `MCODE_TOOLS_CLI` 指定。
+
+先检查连接器（不生成视频、不上传素材）：
+
+```sh
+npm run video -- --check
+```
+
+用本地提示词生成竖屏短视频并等待下载：
+
+```sh
+npm run video -- --prompt-file content/stories/你的作品.md --duration 6 --ratio 9:16
+```
+
+可加 `--reference-image src/photos/characters/角色图.jpg`（最多 9 张）给 H3 提供人物/画面参考；本地参考图会先上传到 MiniMax 临时素材服务，再提交生成任务。可用 `--resolution 768P`（默认）或 `2K`、`--output 路径.mp4` 指定输出位置。生成的视频默认保存到本机 `generated/videos/`，该目录不会被 Git 跟踪，也不会随网站发布；需要分享时请在确认素材授权及文件大小后另行选择合适的共享渠道。
+
+如果生成等待中断，保留终端显示的任务 ID，之后可运行 `npm run video -- --task-id <任务ID>` 继续查询并下载，不会再次提交生成任务。
+
+**费用与素材提示：**提交命令会创建真实的生成任务，额度不足时可能使用账户余额。提示词与所选参考图会发送给 MiniMax；上传的参考图会获得临时链接。只上传有权使用的素材。此命令不会在构建、检查或 GitHub Actions 中运行，也不会自动提交或发布视频。H3 仅支持 4–15 秒片段；MCode 连接器不需要把凭证保存进仓库。
 
 ## 资料来源
 
