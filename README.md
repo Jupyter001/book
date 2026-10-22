@@ -98,6 +98,8 @@ GitHub Pages 发布来源为 **GitHub Actions**。推送至 `main` 后，工作�
 
 合作者通过 GitHub 分支和拉取请求补充资料：人物画像放在 `content/characters/`，关键事件放在 `content/milestones/`，公开授权的图片素材按上面的流程放入 `src/photos/` 并登记到 `content/photos.json`。可复制各目录中的 `_template.md` 开始填写；提交前请阅读 [`content/collaboration/README.md`](content/collaboration/README.md)。
 
+**先建立并审核主角团人物圣经与人物形象图，再开始分集剧本。** 人物图由合作者使用文生图，或以获准的图库素材进行图生图/实图改造；审核通过后将主视觉、设计版本和参考图片 ID 登记回素材库，后续剧集沿用已批准的身份、造型与性格设定。声音设计为可选，不设声音约束时留空。
+
 本仓库会公开在 GitHub 和 GitHub Pages 上。不要提交未经同意的群聊原图、完整聊天导出、个人隐私或账号信息；优先提交经参与者同意并脱敏的摘要、必要的短摘录和来源说明。原始私密材料应留在获授权的私有位置，PR 只包含创作所需的公开安全信息。
 
 使用 MiniMax Code Desktop 时，在仓库目录打开项目，选择 **M3.1-Flash**，再使用 [`content/collaboration/mcode-script-prompt.md`](content/collaboration/mcode-script-prompt.md) 中的提示词。模型只负责起草；人物事实、事件来源和剧本改动由协作者审阅后通过 PR 合并。
